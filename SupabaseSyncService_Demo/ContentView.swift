@@ -7,52 +7,97 @@
 
 import SwiftUI
 import SwiftData
+import GoogleSignIn
+import Supabase
 
+// SECTION SUPABASE CONFIG
+let supabase = SupabaseClient(
+  supabaseURL: SupabaseConfig.url,
+  supabaseKey: SupabaseConfig.key
+)
+enum SupabaseConfig {
+    static var url: URL = {
+        guard let urlString = Bundle.main.object(forInfoDictionaryKey: "SupabaseURL") as? String else {
+            fatalError("SupabaseURL not found in Info.plist. Please add it.")
+        }
+        print("DEBUG: Trying to create URL from this string: '\(urlString)'")
+        guard let url = URL(string: urlString) else {
+            fatalError("Invalid SupabaseURL in Info.plist.")
+        }
+        return url
+    }()
+
+    static var key: String = {
+        guard let key = Bundle.main.object(forInfoDictionaryKey: "SupabaseKey") as? String else {
+            fatalError("SupabaseKey not found in Info.plist. Please add it.")
+        }
+        return key
+    }()
+}
+
+class UserStateData: ObservableObject {
+    @Published var session: Session?
+    
+    init() {
+        Task{
+            for await state in supabase.auth.authStateChanges {
+                self.session = state.session
+            }
+        }
+    }
+}
+
+// SECTION: CONTENT --------------------------
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
-
+    @StateObject var userData = UserStateData()
+    
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+        VStack {
+            
+            Text("Hello World!")
+            Button("Sign In") {
+                Task {
+                    do {
+                        try await self.googleSignIn()
+                    } catch {
+                        print("Error signing in: \(error)")
                     }
                 }
             }
-        } detail: {
-            Text("Select an item")
+            Text("Login State:\(userData.session == nil ? "Logged Out" : "Logged In") ")
+            Text("User ID: \(userData.session?.user.id.uuidString ?? "N/A")")
         }
     }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
+    
+    func googleSignIn() async throws {
+        guard let rootViewController = getRootViewController() else {
+            print("Could not find a root view controller.")
+            return
         }
-    }
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
+        let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
+
+        guard let idToken = result.user.idToken?.tokenString else {
+            print("No idToken found.")
+            return
         }
+        let accessToken = result.user.accessToken.tokenString
+        try await supabase.auth.signInWithIdToken(
+            credentials: OpenIDConnectCredentials(
+                provider: .google,
+                idToken: idToken,
+                accessToken: accessToken
+            )
+        )
     }
+    
+    private func getRootViewController() -> UIViewController? {
+        (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController
+    }
+    
 }
 
 #Preview {

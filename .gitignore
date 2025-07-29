@@ -1,0 +1,30 @@
+*.xcconfig# Build generated
+build/
+DerivedData/
+
+# Various settings
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcactivitylog
+*.xcplayground/timeline/
+
+# Swift Package Manager (optional, if you're using it)
+.build/
+Package.resolved # You might want to commit this if working in a team
+
+# CocoaPods (optional, if you're using it)
+# We recommend against adding the Pods directory to your .gitignore. However,
+# you should judge for yourself, the pros and cons are mentioned at:
+# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
+# Pods/
+
+# Carthage (optional, if you're using it)
+Carthage/Build/
+
+# Documentation
+docset/
+
+# Misc
+.DS_Store
+# xcconfig files
+*.xcconfig
