@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		4981953F2E387F6E00A0C726 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 498195272E387F6D00A0C726 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4981952E2E387F6D00A0C726;
+			remoteInfo = SupabaseSyncService_Demo;
+		};
+		498195492E387F6E00A0C726 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 498195272E387F6D00A0C726 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4981952E2E387F6D00A0C726;
+			remoteInfo = SupabaseSyncService_Demo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4981952F2E387F6D00A0C726 /* SupabaseSyncService_Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SupabaseSyncService_Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4981953E2E387F6E00A0C726 /* SupabaseSyncService_DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SupabaseSyncService_DemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		498195482E387F6E00A0C726 /* SupabaseSyncService_DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SupabaseSyncService_DemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		498195312E387F6D00A0C726 /* SupabaseSyncService_Demo */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SupabaseSyncService_Demo;
+			sourceTree = "<group>";
+		};
+		498195412E387F6E00A0C726 /* SupabaseSyncService_DemoTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SupabaseSyncService_DemoTests;
+			sourceTree = "<group>";
+		};
+		4981954B2E387F6E00A0C726 /* SupabaseSyncService_DemoUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SupabaseSyncService_DemoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4981952C2E387F6D00A0C726 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4981953B2E387F6E00A0C726 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		498195452E387F6E00A0C726 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		498195262E387F6D00A0C726 = {
+			isa = PBXGroup;
+			children = (
+				498195312E387F6D00A0C726 /* SupabaseSyncService_Demo */,
+				498195412E387F6E00A0C726 /* SupabaseSyncService_DemoTests */,
+				4981954B2E387F6E00A0C726 /* SupabaseSyncService_DemoUITests */,
+				498195302E387F6D00A0C726 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		498195302E387F6D00A0C726 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4981952F2E387F6D00A0C726 /* SupabaseSyncService_Demo.app */,
+				4981953E2E387F6E00A0C726 /* SupabaseSyncService_DemoTests.xctest */,
+				498195482E387F6E00A0C726 /* SupabaseSyncService_DemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4981952E2E387F6D00A0C726 /* SupabaseSyncService_Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 498195522E387F6E00A0C726 /* Build configuration list for PBXNativeTarget "SupabaseSyncService_Demo" */;
+			buildPhases = (
+				4981952B2E387F6D00A0C726 /* Sources */,
+				4981952C2E387F6D00A0C726 /* Frameworks */,
+				4981952D2E387F6D00A0C726 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				498195312E387F6D00A0C726 /* SupabaseSyncService_Demo */,
+			);
+			name = SupabaseSyncService_Demo;
+			packageProductDependencies = (
+			);
+			productName = SupabaseSyncService_Demo;
+			productReference = 4981952F2E387F6D00A0C726 /* SupabaseSyncService_Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4981953D2E387F6E00A0C726 /* SupabaseSyncService_DemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 498195552E387F6E00A0C726 /* Build configuration list for PBXNativeTarget "SupabaseSyncService_DemoTests" */;
+			buildPhases = (
+				4981953A2E387F6E00A0C726 /* Sources */,
+				4981953B2E387F6E00A0C726 /* Frameworks */,
+				4981953C2E387F6E00A0C726 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				498195402E387F6E00A0C726 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				498195412E387F6E00A0C726 /* SupabaseSyncService_DemoTests */,
+			);
+			name = SupabaseSyncService_DemoTests;
+			packageProductDependencies = (
+			);
+			productName = SupabaseSyncService_DemoTests;
+			productReference = 4981953E2E387F6E00A0C726 /* SupabaseSyncService_DemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		498195472E387F6E00A0C726 /* SupabaseSyncService_DemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 498195582E387F6E00A0C726 /* Build configuration list for PBXNativeTarget "SupabaseSyncService_DemoUITests" */;
+			buildPhases = (
+				498195442E387F6E00A0C726 /* Sources */,
+				498195452E387F6E00A0C726 /* Frameworks */,
+				498195462E387F6E00A0C726 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4981954A2E387F6E00A0C726 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				4981954B2E387F6E00A0C726 /* SupabaseSyncService_DemoUITests */,
+			);
+			name = SupabaseSyncService_DemoUITests;
+			packageProductDependencies = (
+			);
+			productName = SupabaseSyncService_DemoUITests;
+			productReference = 498195482E387F6E00A0C726 /* SupabaseSyncService_DemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		498195272E387F6D00A0C726 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					4981952E2E387F6D00A0C726 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					4981953D2E387F6E00A0C726 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 4981952E2E387F6D00A0C726;
+					};
+					498195472E387F6E00A0C726 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 4981952E2E387F6D00A0C726;
+					};
+				};
+			};
+			buildConfigurationList = 4981952A2E387F6D00A0C726 /* Build configuration list for PBXProject "SupabaseSyncService_Demo" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 498195262E387F6D00A0C726;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 498195302E387F6D00A0C726 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4981952E2E387F6D00A0C726 /* SupabaseSyncService_Demo */,
+				4981953D2E387F6E00A0C726 /* SupabaseSyncService_DemoTests */,
+				498195472E387F6E00A0C726 /* SupabaseSyncService_DemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4981952D2E387F6D00A0C726 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4981953C2E387F6E00A0C726 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		498195462E387F6E00A0C726 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4981952B2E387F6D00A0C726 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4981953A2E387F6E00A0C726 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		498195442E387F6E00A0C726 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		498195402E387F6E00A0C726 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4981952E2E387F6D00A0C726 /* SupabaseSyncService_Demo */;
+			targetProxy = 4981953F2E387F6E00A0C726 /* PBXContainerItemProxy */;
+		};
+		4981954A2E387F6E00A0C726 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4981952E2E387F6D00A0C726 /* SupabaseSyncService_Demo */;
+			targetProxy = 498195492E387F6E00A0C726 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		498195502E387F6E00A0C726 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 6L77Y3X3HC;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		498195512E387F6E00A0C726 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 6L77Y3X3HC;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		498195532E387F6E00A0C726 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6L77Y3X3HC;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "BrodyWhalen.SupabaseSyncService-Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		498195542E387F6E00A0C726 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6L77Y3X3HC;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "BrodyWhalen.SupabaseSyncService-Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		498195562E387F6E00A0C726 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6L77Y3X3HC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "BrodyWhalen.SupabaseSyncService-DemoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SupabaseSyncService_Demo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SupabaseSyncService_Demo";
+			};
+			name = Debug;
+		};
+		498195572E387F6E00A0C726 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6L77Y3X3HC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "BrodyWhalen.SupabaseSyncService-DemoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SupabaseSyncService_Demo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SupabaseSyncService_Demo";
+			};
+			name = Release;
+		};
+		498195592E387F6E00A0C726 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6L77Y3X3HC;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "BrodyWhalen.SupabaseSyncService-DemoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SupabaseSyncService_Demo;
+			};
+			name = Debug;
+		};
+		4981955A2E387F6E00A0C726 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6L77Y3X3HC;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "BrodyWhalen.SupabaseSyncService-DemoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SupabaseSyncService_Demo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4981952A2E387F6D00A0C726 /* Build configuration list for PBXProject "SupabaseSyncService_Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				498195502E387F6E00A0C726 /* Debug */,
+				498195512E387F6E00A0C726 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		498195522E387F6E00A0C726 /* Build configuration list for PBXNativeTarget "SupabaseSyncService_Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				498195532E387F6E00A0C726 /* Debug */,
+				498195542E387F6E00A0C726 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		498195552E387F6E00A0C726 /* Build configuration list for PBXNativeTarget "SupabaseSyncService_DemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				498195562E387F6E00A0C726 /* Debug */,
+				498195572E387F6E00A0C726 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		498195582E387F6E00A0C726 /* Build configuration list for PBXNativeTarget "SupabaseSyncService_DemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				498195592E387F6E00A0C726 /* Debug */,
+				4981955A2E387F6E00A0C726 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 498195272E387F6D00A0C726 /* Project object */;
+}
