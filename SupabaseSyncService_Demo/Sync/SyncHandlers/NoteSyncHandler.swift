@@ -18,6 +18,7 @@ class NoteSyncHandler: SyncActionHandler {
             return
         }
         let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
         let tableName = "notes"
         
         switch opType {

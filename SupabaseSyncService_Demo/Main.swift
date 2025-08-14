@@ -10,7 +10,7 @@ import SwiftData
 
 @main
 struct SupabaseSyncService_DemoApp: App {
-    @StateObject private var authService: AuthService = AuthService.shared
+    @StateObject private var authService: AuthService = AuthService.shared!
 //    private var syncService: SyncService
     @StateObject private var syncManager: SyncManager = SyncManager()
     var sharedModelContainer: ModelContainer
@@ -22,7 +22,8 @@ struct SupabaseSyncService_DemoApp: App {
             let schema = Schema([
                 User.self,
                 Blog.self,
-                Note.self
+                Note.self,
+                SyncToOperation.self
             ])
             let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
             
@@ -32,6 +33,7 @@ struct SupabaseSyncService_DemoApp: App {
                 fatalError("Could not create ModelContainer: \(error)")
             }
         }()
+        AuthService.configure(modelContainer: sharedModelContainer)
         
     }
     
@@ -41,8 +43,15 @@ struct SupabaseSyncService_DemoApp: App {
                         .environmentObject(authService)
                         .environmentObject(syncManager)
                         .task {
-                            let syncService = SyncService(modelContainer: sharedModelContainer, supabaseClient: AuthService.shared.supabase)
+                            guard let auth = AuthService.shared else {
+                                print(">>> Auth not ready yet")
+                                return
+                            }
+                            let syncService = SyncService(modelContainer: sharedModelContainer, supabaseClient: auth.supabase)
+                            let noteSyncHandler = NoteSyncHandler()
+                            await syncService.register(modelHandler: noteSyncHandler)
                             syncManager.attatchSyncService(syncService)
+                            syncManager.start()
                             
                         }
         }

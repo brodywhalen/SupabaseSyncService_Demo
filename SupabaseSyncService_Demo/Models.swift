@@ -55,7 +55,7 @@ class Note: Syncable {
 @Model
 class Blog {
     // Syncable Conformance
-    static let modelName: String = "notes"
+    static let modelName: String = "blogs"
     var syncId: String { self.id.uuidString}
     func toDTO() -> BlogDTO {
         BlogDTO(

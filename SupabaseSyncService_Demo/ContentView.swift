@@ -22,26 +22,8 @@ struct ContentView: View {
             Button("Sign In") {
                 Task {
                     do {
-                        try await authService.googleSignIn()
+                        try await authService.googleSignIn(modelContext: modelContext)
                         
-//                        guard let session = authService.session else {
-//                            print("Not logged in.")
-//                            return
-//                        }
-//                        let userId = session.user.id
-//                        let userEmail = session.user.email ?? ""
-//                        let metadataValue = session.user.userMetadata["name"]
-//                        let userUsername = metadataValue?.stringValue ?? "UserPlaceholder"
-//                        let predicate = #Predicate<User> { $0.id == userId }
-//                        var fetchDescriptor = FetchDescriptor<User>(predicate: predicate)
-//                        fetchDescriptor.fetchLimit = 1
-//                        let existingUsers = try modelContext.fetch(fetchDescriptor)
-//                        if existingUsers.isEmpty {
-//                            let newUser = User(id: userId, username: userUsername, email: userEmail)
-//                            modelContext.insert(newUser)
-//                            try modelContext.save()
-//                            ("New user saved to local store: \(userUsername)")
-//                        }
 
                     } catch {
                         print("Error signing in: \(error)")
