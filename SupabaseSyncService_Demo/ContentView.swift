@@ -10,49 +10,11 @@ import SwiftData
 import GoogleSignIn
 import Supabase
 
-// SECTION SUPABASE CONFIG
-let supabase = SupabaseClient(
-  supabaseURL: SupabaseConfig.url,
-  supabaseKey: SupabaseConfig.key
-)
-enum SupabaseConfig {
-    static var url: URL = {
-        guard let urlString = Bundle.main.object(forInfoDictionaryKey: "SupabaseURL") as? String else {
-            fatalError("SupabaseURL not found in Info.plist. Please add it.")
-        }
-        print("DEBUG: Trying to create URL from this string: '\(urlString)'")
-        guard let url = URL(string: urlString) else {
-            fatalError("Invalid SupabaseURL in Info.plist.")
-        }
-        return url
-    }()
-
-    static var key: String = {
-        guard let key = Bundle.main.object(forInfoDictionaryKey: "SupabaseKey") as? String else {
-            fatalError("SupabaseKey not found in Info.plist. Please add it.")
-        }
-        return key
-    }()
-}
-
-class UserStateData: ObservableObject {
-    @Published var session: Session?
-    
-    init() {
-        Task{
-            for await state in supabase.auth.authStateChanges {
-                self.session = state.session
-            }
-        }
-    }
-}
-
-// SECTION: CONTENT --------------------------
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-    @StateObject var userData = UserStateData()
-    
+    @EnvironmentObject private var authService: AuthService
+    @EnvironmentObject private var syncManager: SyncManager
+    @Query(sort: \SyncToOperation.created_at, order: .forward) private var syncOperations: [SyncToOperation]
     var body: some View {
         VStack {
             
@@ -60,47 +22,88 @@ struct ContentView: View {
             Button("Sign In") {
                 Task {
                     do {
-                        try await self.googleSignIn()
+                        try await authService.googleSignIn()
+                        
+//                        guard let session = authService.session else {
+//                            print("Not logged in.")
+//                            return
+//                        }
+//                        let userId = session.user.id
+//                        let userEmail = session.user.email ?? ""
+//                        let metadataValue = session.user.userMetadata["name"]
+//                        let userUsername = metadataValue?.stringValue ?? "UserPlaceholder"
+//                        let predicate = #Predicate<User> { $0.id == userId }
+//                        var fetchDescriptor = FetchDescriptor<User>(predicate: predicate)
+//                        fetchDescriptor.fetchLimit = 1
+//                        let existingUsers = try modelContext.fetch(fetchDescriptor)
+//                        if existingUsers.isEmpty {
+//                            let newUser = User(id: userId, username: userUsername, email: userEmail)
+//                            modelContext.insert(newUser)
+//                            try modelContext.save()
+//                            ("New user saved to local store: \(userUsername)")
+//                        }
+
                     } catch {
                         print("Error signing in: \(error)")
                     }
                 }
             }
-            Text("Login State:\(userData.session == nil ? "Logged Out" : "Logged In") ")
-            Text("User ID: \(userData.session?.user.id.uuidString ?? "N/A")")
+            Button("Log out") {
+                Task {
+                    do {
+                        try await authService.signOut()
+                    } catch {
+                        print("Error signing out: \(error)")
+                    }
+                }
+            }
+            Text("Login State:\(authService.session == nil ? "Logged Out" : "Logged In") ")
+            Text("User ID: \(authService.session?.user.id.uuidString ?? "N/A")")
+            Button("Create Note") {
+                addNote(title: "Test Note", content: "This is a test note \(Int.random(in: 0...1000))")
+            }
+            Divider()
+            Text("Sync State: \(syncManager.syncStatus)")
+            List {
+                ForEach(syncOperations) { operation in
+                    Text("\(operation.created_at) \(operation.operationType)")
+                }
+            }
+            Button("Trigger Sync!") {
+                syncManager.triggerSync()
+            }
         }
     }
-
-    
-    func googleSignIn() async throws {
-        guard let rootViewController = getRootViewController() else {
-            print("Could not find a root view controller.")
+    func addNote (title: String, content: String) {
+        guard let currentUserId = authService.session?.user.id else {
+            print("could not get current user id... is the user logged in?")
             return
         }
+        
+        do {
+            // 2. Create a predicate to find the local User with that ID
+            let predicate = #Predicate<User> { user in
+                user.id == currentUserId
+            }
+            
+            // Use a FetchDescriptor for a specific, one-time fetch
+            var fetchDescriptor = FetchDescriptor(predicate: predicate)
+            fetchDescriptor.fetchLimit = 1 // We only need one user
 
-        let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
-
-        guard let idToken = result.user.idToken?.tokenString else {
-            print("No idToken found.")
-            return
+            // 3. Fetch the User from SwiftData
+            if let currentUser = try modelContext.fetch(fetchDescriptor).first {
+                // 4. Create and insert the new Note
+                let newNote = Note(title: title, content: content, created_by: currentUser)
+                modelContext.insert(newNote)
+                modelContext.queueSyncOperation(for: newNote, type: .create)
+                print("✅ Note created successfully for user: \(currentUser.username)")
+            } else {
+                print("Error: Could not find a local User with ID: \(currentUserId)")
+            }
+        } catch {
+            print("Error fetching user: \(error)")
         }
-        let accessToken = result.user.accessToken.tokenString
-        try await supabase.auth.signInWithIdToken(
-            credentials: OpenIDConnectCredentials(
-                provider: .google,
-                idToken: idToken,
-                accessToken: accessToken
-            )
-        )
+        
     }
-    
-    private func getRootViewController() -> UIViewController? {
-        (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController
-    }
-    
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
-}

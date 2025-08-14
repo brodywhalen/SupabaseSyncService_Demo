@@ -45,6 +45,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				config/config.xcconfig,
+				config/SupabaseConfig.swift,
 			);
 			target = 4981953D2E387F6E00A0C726 /* SupabaseSyncService_DemoTests */;
 		};
@@ -52,6 +53,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				config/config.xcconfig,
+				config/SupabaseConfig.swift,
 			);
 			target = 498195472E387F6E00A0C726 /* SupabaseSyncService_DemoUITests */;
 		};

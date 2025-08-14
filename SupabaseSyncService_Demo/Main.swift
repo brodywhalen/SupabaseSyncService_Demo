@@ -10,23 +10,45 @@ import SwiftData
 
 @main
 struct SupabaseSyncService_DemoApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
+    @StateObject private var authService: AuthService = AuthService.shared
+//    private var syncService: SyncService
+    @StateObject private var syncManager: SyncManager = SyncManager()
+    var sharedModelContainer: ModelContainer
+    // let syncManager; syncManager // handles startup logic and st
+    
+    init() {
+        //Setup model container
+        sharedModelContainer = {
+            let schema = Schema([
+                User.self,
+                Blog.self,
+                Note.self
+            ])
+            let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+            
+            do {
+                return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            } catch {
+                fatalError("Could not create ModelContainer: \(error)")
+            }
+        }()
+        
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+                    ContentView()
+                        .environmentObject(authService)
+                        .environmentObject(syncManager)
+                        .task {
+                            let syncService = SyncService(modelContainer: sharedModelContainer, supabaseClient: AuthService.shared.supabase)
+                            syncManager.attatchSyncService(syncService)
+                            
+                        }
         }
         .modelContainer(sharedModelContainer)
+        
+        
     }
+
 }
