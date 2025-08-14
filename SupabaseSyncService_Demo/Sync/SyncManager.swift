@@ -34,7 +34,7 @@ class SyncManager: ObservableObject {
     
     init(/*syncService: SyncService*/) {
 //        self.syncService = syncService
-        
+        networkMonitor.start(queue: .main)
         // Start monitoring network status changes
         networkMonitor.pathUpdateHandler = { [weak self] path in
             Task {
@@ -53,6 +53,7 @@ class SyncManager: ObservableObject {
     }
     func attatchSyncService(_ syncService: SyncService) {
         self.syncService = syncService
+        print("SyncManager configured with SyncService")
     }
     
     /// Starts the sync manager. This should be called once when the app launches.
@@ -101,6 +102,8 @@ class SyncManager: ObservableObject {
         Task {
             print("Manual sync triggered...")
             self.syncStatus = .syncing // Update state
+//            print("Syncing... \(self.syncStatus)")
+//            try await Task.sleep(for: .seconds(3))
             do {
                 //TODO: Make sure errors are progated through the Sync service (current caught inside)
                 guard let syncService = self.syncService else {
