@@ -32,3 +32,4 @@ struct UserDTO: Codable {
     let blogs: [UUID]
     let notes: [UUID]
 }
+
