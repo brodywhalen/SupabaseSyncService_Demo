@@ -47,6 +47,7 @@ class NoteSyncHandler: SyncActionHandler {
                 created_at: dto.created_at,
                 created_by: dto.created_by
             )
+            print("created_by: \(dto.created_by)")
             // Inserting the Note with no relations
             try await supabase.from(tableName).insert(payloadForNotesTable).execute()
             //

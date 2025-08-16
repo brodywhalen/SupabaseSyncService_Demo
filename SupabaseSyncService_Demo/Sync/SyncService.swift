@@ -73,7 +73,7 @@ actor SyncService {
                 switch opType {
                 case .create, .update, .delete:
                     guard let modelName = operation.modelName, let handler = modelHandlers[modelName] else {
-                        //                        throw SyncError.missingHandler("CUD handler for \(operation.modelName ?? "nil")")
+    //                        throw SyncError.missingHandler("CUD handler for \(operation.modelName ?? "nil")")
                         print("Error: Missing CRUD handler for \(operation.modelName ?? "nil")")
                         return
                     }
