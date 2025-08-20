@@ -58,7 +58,7 @@ actor SyncService {
     }
     
     // This is the queue that is processing the sync actions in the background
-    func processQueue() async {
+    func processQueue() async -> Bool {
         let context = ModelContext(modelContainer)
         
         while let operation = fetchNextOperation(context: context) {
@@ -66,7 +66,7 @@ actor SyncService {
                 guard let opType = SyncOperationType(rawValue: operation.operationType) else {
                     print("Error parsing operation type: \(operation.operationType)")
                     //                    throw SyncError.unknownOperationType(operation.operationType)
-                    return
+                    return false
                 }
                 
                 // Route based on the operation type
@@ -75,7 +75,7 @@ actor SyncService {
                     guard let modelName = operation.modelName, let handler = modelHandlers[modelName] else {
     //                        throw SyncError.missingHandler("CUD handler for \(operation.modelName ?? "nil")")
                         print("Error: Missing CRUD handler for \(operation.modelName ?? "nil")")
-                        return
+                        return false
                     }
                     try await handler.execute(operation: operation, using: supabaseClient)
                     
@@ -83,7 +83,7 @@ actor SyncService {
                     guard let rpcName = operation.rpcName, let handler = rpcHandlers[rpcName] else {
                         //                        throw SyncError.missingHandler("RPC handler for \(operation.rpcName ?? "nil")")
                         print("Error: Missing RPC handler for \(operation.rpcName ?? "nil")")
-                        return
+                        return false
                     }
                     try await handler.execute(payload: operation.payload, using: supabaseClient)
                 }
@@ -96,11 +96,12 @@ actor SyncService {
             } catch {
                 print("❌ Failed to sync op \(operation.id): \(error.localizedDescription).")
                 print("   Halting queue to preserve order. Will retry on next sync.")
-                return
+                return false
             }
         }
         
         print("Sync queue processed.")
+        return true
     }
     
 

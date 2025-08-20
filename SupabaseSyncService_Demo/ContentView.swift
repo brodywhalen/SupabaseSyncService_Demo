@@ -15,6 +15,7 @@ struct ContentView: View {
     @EnvironmentObject private var authService: AuthService
     @EnvironmentObject private var syncManager: SyncManager
     @Query(sort: \SyncToOperation.created_at, order: .forward) private var syncOperations: [SyncToOperation]
+    @Query private var notes: [Note]
     var body: some View {
         VStack {
             
@@ -48,14 +49,45 @@ struct ContentView: View {
             Text("Sync State: \(syncManager.syncStatus)")
             List {
                 ForEach(syncOperations) { operation in
-                    Text("\(operation.created_at) \(operation.operationType)")
+                    HStack {
+                        Text("\(operation.created_at) \(operation.operationType)")
+                    }
+                }
+            }
+            List {
+                ForEach(notes) { note in
+                    HStack {
+                        Text("\(note.title)")
+                        Button("Delete") {
+                            deleteNote(note)
+                        }
+                    }
                 }
             }
             Button("Trigger Sync!") {
-                syncManager.triggerSync()
+                Task {
+                    syncManager.triggerSync()
+                }
             }
         }
     }
+    
+    func deleteNote(_ note: Note) {
+        modelContext.delete(note)
+        
+        do {
+            
+            
+            modelContext.queueSyncOperation(for: note, type: .delete)
+            try modelContext.save()
+            
+        } catch {
+            print("failed to save delete")
+        }
+        
+    }
+    
+    
     func addNote (title: String, content: String) {
         guard let currentUserId = authService.session?.user.id else {
             print("could not get current user id... is the user logged in?")
@@ -78,6 +110,7 @@ struct ContentView: View {
                 let newNote = Note(title: title, content: content, created_by: currentUser)
                 modelContext.insert(newNote)
                 modelContext.queueSyncOperation(for: newNote, type: .create)
+                try modelContext.save()
                 print("✅ Note created successfully for user: \(currentUser.username)")
             } else {
                 print("Error: Could not find a local User with ID: \(currentUserId)")

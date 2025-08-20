@@ -66,11 +66,30 @@ class NoteSyncHandler: SyncActionHandler {
             let dto = try decoder.decode(NoteDTO.self, from: operation.payload)
             try await supabase.from(tableName).update(dto).eq( "id", value: dto.id).execute()
         case .delete:
+            // 1. Decode the payload back to a String
             guard let idString = String(data: operation.payload, encoding: .utf8) else {
-                print("cannot convert id of object to be deleted to string")
+                print("Error: Cannot convert payload to string for deletion.")
                 return
             }
-            try await supabase.from(tableName).delete().eq("id", value: idString).execute()
+
+            // 2. Convert the String into a UUID object
+            guard let idUUID = UUID(uuidString: idString) else {
+                print("Error: The payload string '\(idString)' is not a valid UUID.")
+                return
+            }
+
+            print("Attempting to delete note with UUID: \(idUUID)")
+
+            // 3. Use the UUID object in the filter and wrap in do-catch
+            do {
+                try await supabase.from(tableName)
+                    .delete()
+                    .eq("id", value: idUUID) // <-- Use the UUID object here, not the string
+                    .execute()
+                print("✅ Successfully deleted note.")
+            } catch {
+                print("❌ Supabase delete error: \(error.localizedDescription)")
+            }
         case .rpc:
             print("RPC should not be handled in in the model handlers")
             break

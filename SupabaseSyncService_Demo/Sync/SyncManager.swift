@@ -56,6 +56,48 @@ class SyncManager: ObservableObject {
         print("SyncManager configured with SyncService")
     }
     
+    func triggerSync() {
+        Task {
+            await doTriggerSync()
+        }
+    }
+    
+    private func doTriggerSync() async {
+        guard isNetworkAvailable else {
+            print("Sync trigger skipped, network is unavailable.")
+            return
+        }
+        
+        // Don't start a new sync if one is already in progress
+        guard syncStatus != .syncing else {
+            print("Sync already in progress. Skipping trigger.")
+            return
+        }
+        
+        print("Manual sync triggered...")
+        syncStatus = .syncing // Update state
+        
+        do {
+            guard let syncService = self.syncService else {
+                let error = NSError(
+                    domain: "com.YourApp.SyncManager",
+                    code: 1001,
+                    userInfo: [
+                        NSLocalizedDescriptionKey: "Sync service has not been initialized."
+                    ]
+                )
+                throw error
+            }
+            
+            let success = await syncService.processQueue()
+            syncStatus = success ? .success : .error(NSError(domain: "SyncService", code: 1, userInfo: [NSLocalizedDescriptionKey: "Queue processing was halted by an error."]))
+//            syncStatus = .success // Update state
+        } catch {
+            syncStatus = .error(error) // Update state
+        }
+    }
+    
+    
     /// Starts the sync manager. This should be called once when the app launches.
     func start() {
         // You can specify .main here, but the Task ensures safety regardless.
@@ -69,6 +111,13 @@ class SyncManager: ObservableObject {
             while !Task.isCancelled {
                 // Wait for the defined interval
                 try await Task.sleep(for: .seconds(periodicSyncInterval))
+                
+                // If a sync is already in progress, skip this periodic sync.
+                guard syncStatus != .syncing else {
+                    print("Skipping periodic sync, another sync is in progress.")
+                    continue
+                }
+                
                 //check to see if sync service is intialized
                 guard let syncService = self.syncService else {
                     print("❌ Skipping periodic sync, service not initialized.")
@@ -81,45 +130,6 @@ class SyncManager: ObservableObject {
                 } else {
                     print("Skipping periodic sync, network is unavailable.")
                 }
-            }
-        }
-    }
-    
-    /// Triggers an immediate, one-off sync if the network is available.
-    /// Call this after a user performs an action for faster feedback.
-    func triggerSync() {
-        guard isNetworkAvailable else {
-            print("Sync trigger skipped, network is unavailable.")
-            return
-        }
-        
-        // Don't start a new sync if one is already in progress
-        guard self.syncStatus != .syncing else {
-            print("Sync already in progress. Skipping trigger.")
-            return
-        }
-        
-        Task {
-            print("Manual sync triggered...")
-            self.syncStatus = .syncing // Update state
-//            print("Syncing... \(self.syncStatus)")
-//            try await Task.sleep(for: .seconds(3))
-            do {
-                //TODO: Make sure errors are progated through the Sync service (current caught inside)
-                guard let syncService = self.syncService else {
-                    let error = NSError(
-                        domain: "com.YourApp.SyncManager", // A string to identify the error source
-                        code: 1001,                         // A unique code for this specific error
-                        userInfo: [
-                            NSLocalizedDescriptionKey: "Sync service has not been initialized."
-                        ]
-                    )
-                    throw error
-                }
-                try await syncService.processQueue()
-                self.syncStatus = .success // Update state
-            } catch {
-                self.syncStatus = .error(error) // Update state
             }
         }
     }
